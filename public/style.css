@@ -1,0 +1,52 @@
+html, body{
+    margin:0;
+    padding:0;
+    width: 100%;
+    min-height: 100vh; /*Ensures full height without cutting off content*/
+    overflow: hidden;
+    font-family: "Pacifico", cursive;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Makes sure it takes the full viewport height */
+    width: 100%;
+}
+
+.left-container{
+    background-image: linear-gradient(to bottom right, rgb(96, 160, 221), rgb(54, 76, 202));
+    width: 20rem;
+    height:25rem;
+    border-radius: 15px;
+}
+
+.right-container{
+    background-color: rgb(184, 164, 164);
+    width: 25rem;
+    height:20rem;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.weather-icon{
+    height: 100px;
+    width: 100px;
+}
+
+.info-icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.temp-celsius{
+    font-size: 1.5rem;
+}
+
+.temp-fahr{
+    margin-bottom: 10px;
+}
