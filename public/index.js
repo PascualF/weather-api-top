@@ -1,5 +1,6 @@
 const divCelsius = document.querySelector(".temp-celsius")
 
+
 const getApiKey = async () => {
     try{
         const response = await fetch('/config')
