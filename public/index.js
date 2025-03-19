@@ -1,5 +1,8 @@
 const divCelsius = document.querySelector(".temp-celsius")
-
+const conditionParagraph = document.querySelector(".condition-current")
+const btnConfirm = document.querySelector("button")
+const inputUser = document.querySelector("input")
+const iconWeather = document.querySelector(".weather-icon")
 
 const getApiKey = async () => {
     try{
@@ -23,18 +26,34 @@ const getWeather = async (city = 'brussels') => {
         const apiKey = await getApiKey()
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${apiKey}`)
         const getInfo = await response.json()
-        const getCurrentDay =  getInfo.days[0]
-        console.log(`Condition is ${getCurrentDay.conditions}`)
-        console.log(`The minimum temperature is ${Math.round(convertFToC(getCurrentDay.tempmin))} °C`)
-        console.log(`The minimum temperature is ${Math.round(convertFToC(getCurrentDay.tempmax))} °C`)
+        const getCurrentDay = getInfo.currentConditions
+        return {
+            currentCondition : getCurrentDay.conditions,
+            currentTemp : getCurrentDay.temp
+        }
     } catch (err) {
+        console.log(`Error: ${err}`)
+    }
+}
+
+const displayWeather = async () => {
+    try{
+        console.log('working')
+        const currentWeather = await getWeather()
+        console.log(currentWeather)
+        conditionParagraph.textContent = currentWeather.currentCondition
+        console.log(iconsObject)
+        console.log(iconsObject['Overcast'])
+    } catch(err){
         console.log(`Error: ${err}`)
     }
 }
 
 getWeather()
 
-
+btnConfirm.addEventListener('click', () => {
+    displayWeather()
+})
 
 
 
