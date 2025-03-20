@@ -5,7 +5,11 @@ const btnConfirm = document.querySelector("button")
 const inputUser = document.querySelector("input")
 const iconWeather = document.querySelector(".weather-icon")
 const titleCity = document.querySelector(".city-title")
+const nextHours = document.querySelector(".next-hours")
+const nextDays = document.querySelector(".next-days")
 const cityDefault = 'Brussels'
+
+
 
 const getApiKey = async () => {
     try{
@@ -33,7 +37,8 @@ const getWeather = async (city = cityDefault) => {
         titleCity.textContent = city
         return {
             currentCondition : getCurrentDay.conditions,
-            currentTemp : getCurrentDay.temp
+            currentTemp : getCurrentDay.temp,
+            weatherInfo: getInfo
         }
     } catch (err) {
         console.log(`Error: ${err}`)
@@ -62,13 +67,19 @@ btnConfirm.addEventListener('click', () => {
     console.log(valueUser)
     if(valueUser === ''){
         displayWeather()
+        displayWeatherNextHours()
     } else {
         displayWeather(valueUser)
+        displayWeatherNextHours(valueUser)
     }
 })
 
-
-
 const convertFToC = (tempF) => {
     return celsius = (tempF - 32) * (5/9)
+}
+
+const displayWeatherNextHours = async (userInput = cityDefault) => {
+    const weatherInfo = await getWeather(userInput)
+    console.log(weatherInfo.weatherInfo.days[1])
+    
 }
