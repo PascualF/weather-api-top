@@ -13,6 +13,7 @@ h3{
 
 .info-day{
     display: flex;
+    height: 5rem;
 }
 
 .container{
@@ -28,16 +29,17 @@ h3{
     flex-direction: column;
     align-items: center;
     background-image: linear-gradient(to bottom right, rgb(96, 160, 221), rgb(54, 76, 202));
-    width: 20rem;
-    height:25rem;
+    width: 22rem;
+    height:28rem;
     border-radius: 15px;
-    box-shadow: 10px 10px 10px 10px #888888;
+    box-shadow: 10px 10px 10px 0px #888888;
 }
 
 .right-container{
     background-color: rgb(184, 164, 164);
     width: 25rem;
     height:20rem;
+    align-items: center;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     box-shadow: 10px 10px 10px 10px #888888;
@@ -48,13 +50,18 @@ h3{
     width: 100px;
 }
 
+.humid-icon,
+.wind-icon {
+    height: 30px;
+}
+
 .humidity{
-    margin-top: 1.3rem;
+    margin-top: 1rem;
     margin-right: 5rem;
 }
 
 .wind{
-    margin-top: 1.3rem;
+    margin-top: 1rem;
     margin-left: 5rem;
 }
 
@@ -64,30 +71,72 @@ h3{
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding-top: 20px;
+    padding-top: 5px;
     width: 100%;
 }
 
 .temp-celsius{
     font-size: 1.5rem;
+    margin-left: 20px;
 }
 
 .temp-fahr{
     margin-bottom: 10px;
+    padding-left: 7px;
+    margin-left: 20px;
 }
 
 button{
     border-radius: 10px;
     background-color: rgb(104, 104, 135);
     color:white;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 input{
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .next-hours{
     display: flex;
+    justify-content: center;
+    height: 50%;
+}
+
+.hourly-div{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    margin-left: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hourly-div p{
+    margin: 0px;
+}
+
+.hours-icon{
+    height: 40px;
+    width: 40px;
+}
+
+.hours-temp-f{
+    font-size: 0.8rem;
+}
+
+
+
+#humid-p,
+#wind-p{
+    margin:0;
+}
+
+#wind-p{
+    margin-right: 15px;
+}
+
+.wind-icon{
+    margin-left: 10px;
 }
