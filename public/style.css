@@ -29,15 +29,15 @@ h3{
     flex-direction: column;
     align-items: center;
     background-image: linear-gradient(to bottom right, rgb(96, 160, 221), rgb(54, 76, 202));
-    width: 22rem;
-    height:28rem;
+    width: 25rem;
+    height:30rem;
     border-radius: 15px;
     box-shadow: 10px 10px 10px 0px #888888;
 }
 
 .right-container{
     background-color: rgb(184, 164, 164);
-    width: 25rem;
+    width: 27rem;
     height:20rem;
     align-items: center;
     border-top-right-radius: 15px;
@@ -99,6 +99,12 @@ input{
 }
 
 .next-hours{
+    display: flex;
+    justify-content: center;
+    height: 50%;
+}
+
+.next-days{
     display: flex;
     justify-content: center;
     height: 50%;

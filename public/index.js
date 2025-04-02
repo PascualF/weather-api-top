@@ -9,12 +9,12 @@ const nextHours = document.querySelector(".next-hours")
 const nextDays = document.querySelector(".next-days")
 const currentHumid = document.querySelector("#humid-p")
 const currentWind = document.querySelector("#wind-p")
-const cityDefault = 'Brussels'
+const cityDefault = 'Brussels';
+const dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 const convertFToC = (tempF) => {
     return celsius = (tempF - 32) * (5/9)
 }
-
 
 const getApiKey = async () => {
     try{
@@ -78,28 +78,62 @@ const displayWeatherNextHours = async (userInput = cityDefault) => {
     // Get the current hour
     const date = new Date()
     let hours = date.getHours()
+    nextHours.innerHTML = ``
     for (let i=0; i < 6; i++){
         hours++
         const nextHourInfos = hourlyInfoWeather.hours[hours]
-        console.log(nextHourInfos)
+        /* console.log(nextHourInfos) */
         nextHours.innerHTML += `
             <div class="hourly-div">
                 <p>${hours}h</p>
                 <img src=${iconsObject[nextHourInfos.conditions]} class="hours-icon">
                 <p></p>
-                <p class="hours-temp-c">${nextHourInfos.temp}°c</p>
+                <p class="hours-temp-c">${Math.round(convertFToC(nextHourInfos.temp))}°c</p>
                 <p class="hours-temp-f">${Math.round(nextHourInfos.temp)}°f</p>
             </div>
-        `
-        console.log(hours)
-        
-        
+        `  
     }
 }
 
-displayWeather()
-displayWeatherNextHours()
+const displayWeatherNextDays = async (userInput = cityDefault) => {
+    const weatherInfo = await getWeather(userInput);
+    const dailyWeather = weatherInfo.weatherInfo.days
+    nextDays.innerHTML = ``
 
+
+    for (let i = 1; i < 7; i ++){
+        
+        const nextDayInfo = dailyWeather[i]
+        const date = new Date(nextDayInfo.datetime).getDay();
+        console.log(date)
+        nextDays.innerHTML += `
+            <div class="hourly-div">
+                <p>${dayName[date]}</p>
+                <p>${nextDayInfo.datetime.slice(5)}</p>
+                <img src=${iconsObject[nextDayInfo.conditions]} class="hours-icon">
+                <p></p>
+                <p class="hours-temp-c">${Math.round(convertFToC(nextDayInfo.temp))}°c</p>
+                <p class="hours-temp-f">${Math.round(nextDayInfo.temp)}°f</p>
+            </div>
+        `
+    }
+}
+
+displayWeatherNextDays()
+
+const updateWeather = async (city = cityDefault) => {
+    try {
+        const weatherData = await getWeather(city);
+        if(!weatherData) return; // Handle potential API errors
+
+        displayWeather(weatherData.weatherInfo.address);
+        displayWeatherNextHours(weatherData.weatherInfo.address);
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
+} 
+
+updateWeather();
 btnConfirm.addEventListener('click', () => {
     
     // Get User Input
